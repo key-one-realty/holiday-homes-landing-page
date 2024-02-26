@@ -152,7 +152,7 @@ export default function Home() {
           </div>
           <div className="text-sm lg:text-xl text-text-color text-justify md:text-center">
             <p>
-              Experience less stress and more freedom with our property management services. Let us handle late-night emergencies, paperwork, and tedious tasks, allowing you to focus on quality time with loved ones. Efficiently managing your portfolio, minimizing delays, and negotiating favorable rates, we enhance your property's profitability, ensuring more money in your pocket.
+              Experience less stress and more freedom with our property management services. Let us handle late-night emergencies, paperwork, and tedious tasks, allowing you to focus on quality time with loved ones. Efficiently managing your portfolio, minimizing delays, and negotiating favorable rates, we enhance your property&apos;s profitability, ensuring more money in your pocket.
             </p>
           </div>
         </div>
