@@ -4,17 +4,17 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 241, 241, 241;
+  --background-end-rgb: 241, 241, 241;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -30,4 +30,41 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.hero_section{
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.20) 43.5%), url('/legend_bg.png') no-repeat center center/cover;
+}
+
+.award{
+  background-image: linear-gradient(rgba(87, 125, 84, 0.77), rgba(87, 125, 84, 0.77)), url('/award.png');
+  background-color: rgba(87, 125, 84, 0.77);
+  background-size: cover;
+  background-position: center;
+  /* background-blend-mode: multiply; */
+  color: white;
+}
+
+.service-cards{
+  /* display: grid; */
+  grid-template-columns: repeat(auto-fit, minmax(20.926vw, 1fr));
+}
+
+.service-card{
+  background-color: #EBE3CA;
+  transition: transform 0.5s;
+}
+
+.service-card:hover{
+  transform: scale(1.05);
+  transition: transform 0.5s;
+
+}
+
+.cta-valuation-form{
+  background-image: linear-gradient(rgba(87, 125, 84, 0.77), rgba(87, 125, 84, 0.77)), url('/cta2_bg.webp');
+  background-color: rgba(87, 125, 84, 0.77);
+  background-size: cover;
+  background-position: center;
 }
