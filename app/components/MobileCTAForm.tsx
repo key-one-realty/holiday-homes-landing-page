@@ -15,7 +15,7 @@ const MobileCTAForm = () => {
                         1 out of 2
                     </p>
                     <div className="progress w-16 h-[3px] relative">
-                        <div className="progress-bar w-8 h-full bg-[#80BC42] rounded-tl-[1px] rounded-bl-[1px]">
+                        <div className="progress-bar w-8 h-full bg-accent-purple rounded-tl-[1px] rounded-bl-[1px]">
                         </div>
                     </div>
                 </div>
