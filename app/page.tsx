@@ -2,6 +2,7 @@ import Image from "next/image";
 import CTAForm from "./components/CTAForm";
 import Footer from "./components/Footer";
 import MobileCTAForm from "./components/MobileCTAForm";
+import VideoSection from "./components/VideoSection";
 
 export default function Home() {
   return (
@@ -158,28 +159,7 @@ export default function Home() {
         </div>
         <MobileCTAForm />
       </section>
-      <section className="video w-full flex justify-center items-center">
-        <div className="max-w-[81.481vw] flex flex-col-reverse lg:flex-row gap-8 justify-around lg:justify-between lg:gap-32 xl:justify-around items-center pb-28 w-full">
-          <div className="lhs video-container bg-opacity-30 rounded-[10px] bg-lime-500 w-full lg:w-[35.402vw] h-[52.953vh] flex justify-start items-center">
-            <div className="relative w-[90vw] lg:w-[35.865vw] h-[50.314vh]">
-              <Image src="/video-thumbnail.jpeg" className="lg:ml-8 rounded-[10px] object-cover" alt="video" fill />
-              <div className="play-button flex justify-center items-center absolute top-1/2 transform translate-x-[32.02vw] md:translate-x-[38.02vw] lg:translate-x-[32.02vw]  -translate-y-1/2">
-                <div className="w-[20vw] md:w-[9.259vw] h-[14.257vh] relative">
-                  <Image src="/play.svg" alt="play" fill />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="rhs flex flex-col gap-4 justify-center items-center w-full lg:w-[423px]">
-            <h2 className="text-[27.65px] text-center lg:text-left xl:text-[40px] font-extrabold text-text-color">
-              Looking for a better way to manage your holiday home?
-            </h2>
-            <p className="text-text-color text-center text-sm md:text-base lg:text-left">
-              We take out all the day-to-day issues of managing a holiday home rental and bring in happy faces and wide smiles.
-            </p>
-          </div>
-        </div>
-      </section>
+      <VideoSection />
       <section className="mockup flex gap-8 justify-center items-center py-28 w-full bg-lime-500 bg-opacity-30">
         <div className="max-w-[81.481vw] flex flex-col lg:flex-row md:justify-between xl:justify-evenly items-center gap-8">
           <div className="mockup -mt-56 md:mt-0 w-10/12 h-[376px] md:w-5/12 relative">

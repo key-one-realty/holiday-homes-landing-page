@@ -68,3 +68,16 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+.video-player{
+  width: 100svw;
+  height: 100svh;
+  background-color: rgba(76, 76, 76, 0.6);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  z-index: 1000;
+}
