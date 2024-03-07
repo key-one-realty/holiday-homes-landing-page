@@ -2,34 +2,11 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import { FieldValues, SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import { CTAFormAPIInputs } from '../api/interfaceConfig';
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
-interface CTAFormAPIInputs {
-    source_id: string;
-    division_id: string;
-    lead_type_id: string;
-    employee_id: number;
-    method_id: number;
-    property_type_id: number;
-    contact: {
-        name: string;
-        first_name: string;
-        last_name: string;
-        email: string;
-        country_code: string;
-        phone: string;
-        number: string;
-    };
-    additional_fields: {
-        property_type: String,
-        location: String,
-        bedrooms: String,
-        Message: String,
-        url: String,
-    }[]
-}
 
 const MobileCTAForm = () => {
 
@@ -80,7 +57,7 @@ const MobileCTAForm = () => {
                 {
                     "property_type": "Apartment",
                     "location": "",
-                    "bedrooms": "1",
+                    "bedrooms": "studio",
                     "Message": "",
                     "url": "",
                 }
@@ -90,6 +67,8 @@ const MobileCTAForm = () => {
 
     const handleNextFlow: React.MouseEventHandler<HTMLButtonElement> | undefined = (e) => {
         e.preventDefault();
+        console.log(`formStep: ${formStep}`);
+
         if (formStep < 2) {
             setFormStep(formStep + 1);
         } else {
@@ -125,9 +104,16 @@ const MobileCTAForm = () => {
                     }
                 ]
             }
-
             if (data.additional_fields[0].property_type === 'Villa') {
                 apiData.property_type_id = 2;
+            } else if (data.additional_fields[0].property_type === 'Penthouse') {
+                apiData.property_type_id = 13;
+            } else if (data.additional_fields[0].property_type === 'Townhouse') {
+                apiData.property_type_id = 16;
+            } else if (data.additional_fields[0].property_type === 'Mansion') {
+                apiData.property_type_id = 37;
+            } else {
+                apiData.property_type_id = 1;
             }
 
             const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
@@ -198,97 +184,98 @@ const MobileCTAForm = () => {
                         </div>
                     </div>
                 </div>
-                <div className="form-container flex flex-col justify-start py-4 px-10 gap-4 w-full">
-                    <div className="property-info flex flex-col gap-4">
+                <form>
 
-                        {
-                            formStep === 1 ? (
-                                <div className="property-info flex flex-col gap-4">
-                                    <div className="property-location flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="property-location" className="text-xs text-text-color">Property Location*</label> */}
-                                        <div className="input px-[10px] py-3 w-full  bg-input-bg flex gap-1 justify-start items-center rounded-[10px]">
-                                            <Image src="/location.svg" alt="location" width={16} height={16} />
-                                            <input type="text" {...register("additional_fields.0.location")} id="property-location" placeholder="Enter your property location" className="bg-transparent outline-none border-none w-full" />
-                                        </div>
-                                    </div>
-                                    <div className="Bedrooms* flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="bedrooms" className="text-xs text-text-color">Bedrooms*</label> */}
-                                        <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
-                                            <select {...register("additional_fields.0.bedrooms")} name="bedrooms" id="bedrooms" className="bg-transparent outline-none border-none w-full">
-                                                <option value="" disabled>Bedrooms</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="more than 4">more than 4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="property-type flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="property-type" className="text-xs text-text-color">Property Type*</label> */}
-                                        <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
-                                            <select {...register("additional_fields.0.property_type")} name="property-type" id="property-type" className="bg-transparent outline-none border-none w-full">
-                                                <option value="Apartment">Apartment</option>
-                                                <option value="Villa">Villa</option>
-                                            </select>
-                                        </div>
+                    <div className="form-container flex flex-col justify-start py-4 px-10 gap-4 w-full">
+                        <div className="property-info flex flex-col gap-4">
+
+                            <div className={` ${formStep === 1 ? "flex" : "hidden"} property-info flex-col gap-4`}>
+                                <div className="property-location flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="property-location" className="text-xs text-text-color">Property Location*</label> */}
+                                    <div className="input px-[10px] py-3 w-full  bg-input-bg flex gap-1 justify-start items-center rounded-[10px]">
+                                        <Image src="/location.svg" alt="location" width={16} height={16} />
+                                        <input type="text" {...register("additional_fields.0.location")} id="property-location" placeholder="Enter your property location" className="bg-transparent outline-none border-none w-full" />
                                     </div>
                                 </div>
-                            ) : (
-                                <div className="property-info flex flex-col gap-4">
-                                    <div className="property-location flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="property-location" className="text-xs text-text-color">Property Location*</label> */}
-                                        <div className="input px-[10px] py-3 w-full  bg-input-bg flex gap-1 justify-start items-center rounded-[10px]">
-                                            <input type="text" {...register("contact.name")} id="name" placeholder="Enter your name" className="bg-transparent outline-none border-none w-full" />
-                                        </div>
-                                    </div>
-                                    <div className="Bedrooms* flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="bedrooms" className="text-xs text-text-color">Bedrooms*</label> */}
-                                        <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
-                                            <input type="text" {...register("contact.email")} id="email" placeholder="Enter your email" className="bg-transparent outline-none border-none w-full" />
-                                        </div>
-                                    </div>
-                                    <div className="property-type flex flex-col justify-center items-start gap-2">
-                                        {/* <label htmlFor="property-type" className="text-xs text-text-color">Property Type*</label> */}
-                                        <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
-                                            <PhoneInput
-                                                enableSearch={true}
-                                                inputStyle={{ backgroundColor: 'transparent', border: 'none', color: 'black' }}
-                                                dropdownStyle={{ border: 'none', color: 'black' }}
-                                                buttonStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                                                buttonClass='hover:bg-transparent'
-                                                country={'ae'}
-                                                inputProps={{
-                                                    name: "contact.phone",
-                                                    required: "Enter a number we can reach you on",
-                                                    className: "form-control w-full lg:w-[24.405vw] outline-none bg-transparent border-b px-0 text-black py-4 border-zinc-100"
-                                                }}
-                                                onChange={(phone) => { setPhone(phone) }}
-                                                // {...register("contact.phone", { required: "Enter a number we can reach you on" })}
-                                                placeholder='+___-___-____'
-                                            />
-                                        </div>
+                                <div className="Bedrooms* flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="bedrooms" className="text-xs text-text-color">Bedrooms*</label> */}
+                                    <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
+                                        <select {...register("additional_fields.0.bedrooms")} id="bedrooms" className="bg-transparent outline-none border-none w-full">
+                                            <option value="studio">studio</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="more than 4">more than 4</option>
+                                        </select>
                                     </div>
                                 </div>
-                            )
-                        }
-                        <div className="property-type flex flex-col justify-center items-end gap-2 text-white pt-8 pb-5">
-                            {formStep === 1 ? (<button onClick={handleNextFlow} className="p-3 rounded-lg font-bold bg-accent-purple w-[104px]">
-                                Next
-                            </button>) : (<button onClick={handleSubmit(handleSubmitForm)} className="p-3 flex justify-center items-center rounded-lg font-bold bg-accent-purple w-[104px]">
-                                Submit
-                                {
-                                    isLoading && (
-                                        <div className="loading-icon relative w-[20px] h-[20px] animate-spin text-accent-purple">
-                                            <Image src="/tube-spinner.svg" alt="loading" fill />
-                                        </div>
-                                    )
-                                }
-                            </button>)}
+                                <div className="property-type flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="property-type" className="text-xs text-text-color">Property Type*</label> */}
+                                    <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
+                                        <select {...register(`additional_fields.${0}.property_type`)} id="property-type" className="bg-transparent outline-none border-none w-full">
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Villa">Villa</option>
+                                            <option value="Penthouse">Penthouse</option>
+                                            <option value="Townhouse">Townhouse</option>
+                                            <option value="Mansion">Mansion</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={`${formStep === 2 ? "flex" : "hidden"} property-info flex flex-col gap-4`}>
+                                <div className="property-location flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="property-location" className="text-xs text-text-color">Property Location*</label> */}
+                                    <div className="input px-[10px] py-3 w-full  bg-input-bg flex gap-1 justify-start items-center rounded-[10px]">
+                                        <input type="text" {...register("contact.name")} id="name" placeholder="Enter your name" className="bg-transparent outline-none border-none w-full" />
+                                    </div>
+                                </div>
+                                <div className="Bedrooms* flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="bedrooms" className="text-xs text-text-color">Bedrooms*</label> */}
+                                    <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
+                                        <input type="text" {...register("contact.email")} id="email" placeholder="Enter your email" className="bg-transparent outline-none border-none w-full" />
+                                    </div>
+                                </div>
+                                <div className="property-type flex flex-col justify-center items-start gap-2">
+                                    {/* <label htmlFor="property-type" className="text-xs text-text-color">Property Type*</label> */}
+                                    <div className="input px-[10px] py-3 w-full bg-input-bg flex justify-start items-center rounded-[10px]">
+                                        <PhoneInput
+                                            enableSearch={true}
+                                            inputStyle={{ backgroundColor: 'transparent', border: 'none', color: 'black' }}
+                                            dropdownStyle={{ border: 'none', color: 'black' }}
+                                            buttonStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                                            buttonClass='hover:bg-transparent'
+                                            country={'ae'}
+                                            inputProps={{
+                                                name: "contact.phone",
+                                                required: "Enter a number we can reach you on",
+                                                className: "form-control w-full lg:w-[24.405vw] outline-none bg-transparent border-b px-0 text-black py-4 border-zinc-100"
+                                            }}
+                                            onChange={(phone) => { setPhone(phone) }}
+                                            // {...register("contact.phone", { required: "Enter a number we can reach you on" })}
+                                            placeholder='+___-___-____'
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="property-type flex flex-col justify-center items-end gap-2 text-white pt-8 pb-5">
+                                {formStep === 1 ? (<button onClick={handleNextFlow} className="p-3 rounded-lg font-bold bg-accent-purple w-[104px]">
+                                    Next
+                                </button>) : (<button onClick={handleSubmit(handleSubmitForm)} className="p-3 flex justify-center items-center rounded-lg font-bold bg-accent-purple w-[104px]">
+                                    Submit
+                                    {
+                                        isLoading && (
+                                            <div className="loading-icon relative w-[20px] h-[20px] animate-spin text-accent-purple">
+                                                <Image src="/tube-spinner.svg" alt="loading" fill />
+                                            </div>
+                                        )
+                                    }
+                                </button>)}
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </form>
             </div>
         </div>
     )

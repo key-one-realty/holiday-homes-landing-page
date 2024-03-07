@@ -2,35 +2,11 @@
 import React, { useState, useEffect } from 'react'
 import Image from "next/image";
 import { FieldValues, SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import { CTAFormAPIInputs } from '../api/interfaceConfig';
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
-
-interface CTAFormAPIInputs {
-    source_id: string;
-    division_id: string;
-    lead_type_id: string;
-    employee_id: number;
-    method_id: number;
-    property_type_id: number;
-    contact: {
-        name: string;
-        first_name: string;
-        last_name: string;
-        email: string;
-        country_code: string;
-        phone: string;
-        number: string;
-    };
-    additional_fields: {
-        property_type: String,
-        location: String,
-        bedrooms: String,
-        Message: String,
-        url: String,
-    }[]
-}
 
 const CTAForm = () => {
     const [step, setStep] = useState(1);
@@ -146,6 +122,12 @@ const CTAForm = () => {
 
             if (data.additional_fields[0].property_type === 'Villa') {
                 apiData.property_type_id = 2;
+            } else if (data.additional_fields[0].property_type === 'Penthouse') {
+                apiData.property_type_id = 13;
+            } else if (data.additional_fields[0].property_type === 'Townhouse') {
+                apiData.property_type_id = 16;
+            } else if (data.additional_fields[0].property_type === 'Mansion') {
+                apiData.property_type_id = 37;
             }
 
             const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
@@ -265,6 +247,9 @@ const CTAForm = () => {
                                     <select {...register("additional_fields.0.property_type", { required: true })} id="property-type" className="bg-transparent outline-none border-none w-full">
                                         <option value="Apartment">Apartment</option>
                                         <option value="Villa">Villa</option>
+                                        <option value="Penthouse">Penthouse</option>
+                                        <option value="Townhouse">Townhouse</option>
+                                        <option value="Mansion">Mansion</option>
                                     </select>
                                 </div>
                             </div>
@@ -272,6 +257,7 @@ const CTAForm = () => {
                                 <label htmlFor="bedrooms" className="text-xs text-accent-purple">Bedrooms*</label>
                                 <div className="input px-[10px] py-3 lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] w-full">
                                     <select {...register("additional_fields.0.bedrooms", { required: true })} id="bedrooms" className="bg-transparent outline-none border-none w-full">
+                                        <option value="studio">studio</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
