@@ -18,6 +18,9 @@ const config: Config = {
         "text-color": "#212120",
         "input-bg": "#F1F1F1",
       },
+      screens: {
+        "xs": "400px",
+      },
     },
   },
   plugins: [],

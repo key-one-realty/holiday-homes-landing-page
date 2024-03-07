@@ -50,7 +50,12 @@ const CTAForm = () => {
                 setApiSuccess(false);
             }, 3000);
         }
-    }, [apiSuccess]);
+        else if (apiError) {
+            setTimeout(() => {
+                setApiError("");
+            }, 3000);
+        }
+    }, [apiSuccess, apiError]);
 
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -156,7 +161,7 @@ const CTAForm = () => {
     }
     return (
         <div className="form flex justify-center items-center">
-            <form className="bg-white rounded-lg w-[81.481vw] pb-6 -mt-10 lg:-mt-14 xl:-mt-32 2xl:-mt-44 shadow" onSubmit={(e) => handleSubmit(handleSubmitForm)}>
+            <form className="CTA_form bg-white rounded-lg w-[81.481vw] pb-6 -mt-[2%] xs:-mt-[3%] sm:-mt-[5%] md:-mt-[2%] lg:-mt-10 xl:-mt-14 2xl:-mt-44 shadow" onSubmit={(e) => handleSubmit(handleSubmitForm)}>
                 {
                     apiSuccess && (
                         <div className="success-message w-full mt-4">

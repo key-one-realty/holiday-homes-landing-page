@@ -12,7 +12,7 @@ const MobileCTAForm = () => {
 
     const [formStep, setFormStep] = useState(1);
     const [phone, setPhone] = useState('');
-    const [url, setUrl] = useState('http://List-a-property.keyonehomes.com/');
+    const [url, setUrl] = useState('https://List-a-property.keyonehomes.com/');
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState<String>('');
     const [apiSuccess, setApiSuccess] = useState(false);
@@ -21,7 +21,7 @@ const MobileCTAForm = () => {
         if (window.location.search) {
             const searchParams = new URLSearchParams(window.location.search);
             setUrl(
-                "http://List-a-property.keyonehomes.com/" +
+                "https://List-a-property.keyonehomes.com/" +
                 searchParams.toString()
             );
         }
@@ -33,7 +33,12 @@ const MobileCTAForm = () => {
                 setApiSuccess(false);
             }, 3000);
         }
-    }, [apiSuccess]);
+        else if (apiError) {
+            setTimeout(() => {
+                setApiError("");
+            }, 3000);
+        }
+    }, [apiSuccess, apiError]);
 
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -158,7 +163,7 @@ const MobileCTAForm = () => {
                     )
                 }
                 <div className="form-header flex justify-center items-center">
-                    <h2 className="text-text-color text-center w-[281px] pt-6">
+                    <h2 className="text-text-color text-center sm:w-[281px] pt-6">
                         Fill in the Form below to <span className="font-bold">get a free valuation</span> right away!
                     </h2>
                 </div>

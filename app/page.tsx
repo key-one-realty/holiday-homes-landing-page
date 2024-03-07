@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center w-full">
       <header className="hero_section w-full flex justify-center items-center">
-        <div className="bg-hero-section bg-cover bg-center h-[50vh] w-full max-w-[81.481vw] ">
+        <div className="bg-hero-section bg-cover bg-center h-[60vh] xs:h-[58vh] lg:h-[60vh] xl:h-[50vh] w-full max-w-[81.481vw] ">
           <nav className="flex items-start justify-between w-full mt-4 p-4 mx-auto">
             <Image src="/holiday-homes-1.png" alt="logo" width={184} height={42} />
           </nav>
@@ -36,21 +36,21 @@ export default function Home() {
           </div>
 
           <div className="benefits-cards flex flex-col lg:flex-row justify-center lg:justify-between w-full items-center lg:items-start gap-20">
-            <div className="benefit-card w-[300px] flex flex-col justify-center items-center gap-4">
+            <div className="benefit-card xs:w-[300px] flex flex-col justify-center items-center gap-4">
               <Image src="/graph line.svg" alt="benefit-1" width={64} height={64} />
               <h3 className="text-xl font-bold text-center">Increased Return On Investment</h3>
               <p className="text-text-color text-justify sm:text-sm xl:text-base">
                 Our professional photography and marketing team will ensure your property is showcased in the best light.
               </p>
             </div>
-            <div className="benefit-card w-[300px] flex flex-col justify-center items-center gap-4">
+            <div className="benefit-card xs:w-[300px] flex flex-col justify-center items-center gap-4">
               <Image src="/office chair.svg" alt="benefit-2" width={64} height={64} />
               <h3 className="text-xl font-bold text-center">Reduced Workload</h3>
               <p className="text-text-color text-justify sm:text-sm xl:text-base">
                 Increased efficiency and more time for what matters - that is what Key One Holiday Homes promises you with comprehensive short term rental property management solutions.
               </p>
             </div>
-            <div className="benefit-card w-[300px] flex flex-col justify-center items-center gap-4">
+            <div className="benefit-card xs:w-[300px] flex flex-col justify-center items-center gap-4">
               <Image src="/person male.svg" alt="benefit-3" width={64} height={64} />
               <h3 className="text-xl font-bold text-center">Hassle-Free Management</h3>
               <p className="text-text-color text-justify sm:text-sm xl:text-base">
@@ -71,7 +71,7 @@ export default function Home() {
             <div className="service-cards flex flex-wrap justify-center lg:grid justify-items-center gap-7 w-full">
               <div className="shadow service-card w-full md:w-8/12 lg:w-[25.926vw]  flex flex-col justify-center rounded-[10px] items-center gap-4 py-12">
                 <Image src="/phone.svg" alt="service-1" width={45} height={45} />
-                <h3 className="text-xl font-semibold text-text-color">24/7 Customer Support</h3>
+                <h3 className="text-xl font-semibold text-text-color text-center">24/7 Customer Support</h3>
                 <p className="text-text-color text-center px-7 text-sm xl:text-base">
                   Experience peace of mind with our around-the-clock customer service, ensuring your needs are met and any queries are resolved promptly
                 </p>

@@ -81,3 +81,38 @@ body {
   left: 0;
   z-index: 1000;
 }
+
+.form-control{
+  max-width: 100% !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+  
+.form-control{
+  max-width: 100% !important;
+}
+}
+
+
+@media screen and (max-width: 376px){
+  .bg-hero-section{
+    height: 75svh;
+  }
+  
+  .CTA_form{
+    margin-top: -10% !important;
+  }
+  p{
+    font-size: 0.75rem;
+    max-width: 89%;
+  }
+  h3{
+    max-width: 89%;
+  }
+}
+
+@media screen and (max-width: 280px){
+  .bg-hero-section{
+    height: 85svh;
+  }
+}
