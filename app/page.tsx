@@ -229,7 +229,7 @@ export default function Home() {
               <Image src="/property-finder.svg" className="object-contain" alt="partner-3" fill />
             </div>
             <div className="partner-card w-[40.059vw] md:w-[13.228vw] h-10 relative">
-              <Image src="/vrbo.svg" className="object-contain" alt="partner-4" fill />
+              <Image src="/vrbo.png" className="object-contain" alt="partner-4" fill />
             </div>
             <div className="partner-card w-[40.059vw] md:w-[13.228vw] h-10 relative">
               <Image src="/bayut.svg" className="object-contain" alt="partner-5" fill />
