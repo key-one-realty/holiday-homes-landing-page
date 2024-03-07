@@ -130,8 +130,6 @@ const MobileCTAForm = () => {
                 apiData.property_type_id = 2;
             }
 
-            console.log(apiData);
-
             const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
                 method: "POST",
                 headers: {
@@ -144,11 +142,9 @@ const MobileCTAForm = () => {
             setIsLoading(false);
             setApiSuccess(true);
 
-            console.log('Form submitted: ', responseData);
         } catch (error: any) {
             setIsLoading(false);
             setApiError(error.message);
-            console.log(error);
         }
 
     }
