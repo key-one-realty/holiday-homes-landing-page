@@ -162,7 +162,7 @@ export default function Home() {
       <VideoSection />
       <section className="mockup flex gap-8 justify-center items-center py-28 w-full bg-lime-500 bg-opacity-30">
         <div className="max-w-[81.481vw] flex flex-col lg:flex-row md:justify-between xl:justify-evenly items-center gap-8">
-          <div className="mockup -mt-56 md:mt-0 w-10/12 h-[376px] md:w-5/12 relative">
+          <div className="mockup -mt-52 lg:mt-0 w-10/12 h-[376px] md:w-7/12 relative">
             <Image src="/landlord-portal-mockup.png" className="object-contain" alt="mockup" fill />
           </div>
           <div className="mockup-text flex flex-col gap-11 justify-center items-center lg:items-start w-full lg:w-6/12">
@@ -218,7 +218,7 @@ export default function Home() {
               Our Partners
             </h2>
           </div>
-          <div className="partners-cards flex flex-col md:flex-row justify-center items-center gap-12 w-full">
+          <div className="partners-cards flex flex-col lg:flex-row justify-center items-center gap-12 w-full">
             <div className="partner-card w-[40.059vw] md:w-[13.228vw] h-10 relative">
               <Image src="/airbnb.svg" className="object-contain" alt="partner-1" fill />
             </div>
@@ -239,7 +239,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-12">
-            <button className="p-3 px-10 rounded-[10px] w-full md:w-[28.902vw] font-bold bg-accent-purple text-white">
+            <button className="p-3 px-10 rounded-[10px] w-full lg:w-[28.902vw] font-bold bg-accent-purple text-white">
               Request a Valuation
             </button>
           </div>

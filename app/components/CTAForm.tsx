@@ -37,7 +37,7 @@ const CTAForm = () => {
     const [phone, setPhone] = useState('');
     const [url, setUrl] = useState('http://List-a-property.keyonehomes.com/');
     const [isLoading, setIsLoading] = useState(false);
-    const [apiError, setApiError] = useState<unknown>(null);
+    const [apiError, setApiError] = useState<String>("");
     const [apiSuccess, setApiSuccess] = useState(false);
 
     useEffect(() => {
@@ -183,7 +183,16 @@ const CTAForm = () => {
                     apiSuccess && (
                         <div className="success-message w-full mt-4">
                             <p className="text-accent-purple text-center">
-                                Your form has been submitted successfully
+                                Your request has been submitted successfully, we will get back to you shortly!
+                            </p>
+                        </div>
+                    )
+                }
+                {
+                    apiError && (
+                        <div className="error-message w-full mt-4">
+                            <p className="text-red-300 text-center">
+                                {apiError}
                             </p>
                         </div>
                     )
@@ -224,7 +233,7 @@ const CTAForm = () => {
                                     <input type="email" {...register("contact.email", { required: true })} id="email" placeholder="Enter your email" className="bg-transparent outline-none border-none w-full " />
                                 </div>
                             </div>
-                            <div className="phone flex flex-col justify-center items-start gap-2 w-full">
+                            <div className="phone flex flex-col justify-center items-start gap-2 w-full md:w-1/3 lg:w-full">
                                 <label htmlFor="phone" className="text-xs text-accent-purple">Phone*</label>
                                 <div className="input px-[10px] py-3 w-full lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px]">
                                     <PhoneInput
@@ -281,7 +290,7 @@ const CTAForm = () => {
                                 <div className={`w-full md:w-8/12 gap-2 ${step !== 3 ? 'hidden md:flex' : 'flex'} "message flex-col justify-center items-start"`}>
                                     <label htmlFor="message" className="text-xs text-accent-purple">Message</label>
                                     <div className="input px-[10px] py-3  w-full md:w-[50vw] bg-input-bg flex justify-start items-center rounded-[10px]">
-                                        <textarea {...register("additional_fields.0.Message", { required: true })} id="message" placeholder="Enter your message" className="bg-transparent outline-none border-none w-full h-[46px]" />
+                                        <textarea {...register("additional_fields.0.Message", { required: false })} id="message" placeholder="Enter your message" className="bg-transparent outline-none border-none w-full h-[46px]" />
                                     </div>
                                 </div>
                                 {

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className='bg-[#577D54] w-full flex justify-center items-center'>
             <div className='max-w-[81.481vw] py-5 w-full flex flex-col justify-center items-center'>
-                <div className='inner-footer flex flex-col w-full lg:flex-row justify-between items-center lg:items-start  gap-10 lg:gap-32 p-10 md:p-6 border-b border-white'>
+                <div className='inner-footer flex flex-col w-full lg:flex-row justify-evenly items-center lg:items-start  gap-10 lg:gap-32 p-10 md:p-6 border-b border-white'>
                     <div className='footer-logos lg:w-[207px] flex flex-col gap-7'>
                         <div className='w-full'>
                             <Image src='/holiday-homes-1.png' alt='logo' width={207} height={51.06} />
@@ -62,7 +62,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-                <div className='footer-bottom flex gap-7 justify-between items-center w-full py-5 text-gray-50'>
+                <div className='footer-bottom flex gap-7 justify-between xl:justify-around items-center w-full py-5 text-gray-50'>
                     <div className='footer-bottom-left flex justify-center items-center gap-5'>
                         <div>
                             <Image src='/twitter.svg' alt='twitter' width={20} height={20} />
