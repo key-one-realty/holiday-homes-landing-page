@@ -6,12 +6,13 @@ import { CTAFormAPIInputs } from '../api/interfaceConfig';
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import InputField from './InputField';
 
 
 const CTAForm = () => {
     const [step, setStep] = useState(1);
     const [phone, setPhone] = useState('');
-    const [url, setUrl] = useState('http://List-a-property.keyonehomes.com/');
+    const [url, setUrl] = useState('https://List-a-property.keyonehomes.com/');
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState<String>("");
     const [apiSuccess, setApiSuccess] = useState(false);
@@ -38,7 +39,7 @@ const CTAForm = () => {
         if (window.location.search) {
             const searchParams = new URLSearchParams(window.location.search);
             setUrl(
-                "http://List-a-property.keyonehomes.com/" +
+                "https://List-a-property.keyonehomes.com/" +
                 searchParams.toString()
             );
         }
@@ -79,7 +80,7 @@ const CTAForm = () => {
                 {
                     "property_type": "Apartment",
                     "location": "",
-                    "bedrooms": "1",
+                    "bedrooms": "studio",
                     "Message": "",
                     "url": "",
                 }
@@ -204,18 +205,8 @@ const CTAForm = () => {
                     </div>
                     <div className="form-group flex flex-col gap-4">
                         <div className={`${step !== 1 ? 'hidden md:flex' : 'flex'} "personal-info flex lg:grid lg:grid-cols-3 justify-center items-center flex-col md:flex-row gap-2 lg:gap-6 w-full"`}>
-                            <div className="name flex flex-col justify-center items-start gap-2 w-full">
-                                <label htmlFor="name" className="text-xs text-accent-purple">Name*</label>
-                                <div className="input px-[10px] py-3 w-full lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px]">
-                                    <input type="text" {...register("contact.name", { required: true })} id="name" placeholder="Enter your name" className="bg-transparent outline-none border-none w-full" />
-                                </div>
-                            </div>
-                            <div className="email flex flex-col justify-center items-start gap-2 w-full">
-                                <label htmlFor="email" className="text-xs text-accent-purple">Email*</label>
-                                <div className="input px-[10px] py-3 w-full lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px]">
-                                    <input type="email" {...register("contact.email", { required: true })} id="email" placeholder="Enter your email" className="bg-transparent outline-none border-none w-full " />
-                                </div>
-                            </div>
+                            <InputField label="Name" inputType="text" placeholder="Enter your name" register={register} error={errors.contact?.name} name="contact.name" required={true} />
+                            <InputField label="Email" inputType="text" placeholder="Enter your email" register={register} error={errors.contact?.email} name="contact.email" required={true} />
                             <div className="phone flex flex-col justify-center items-start gap-2 w-full md:w-1/3 lg:w-full">
                                 <label htmlFor="phone" className="text-xs text-accent-purple">Phone*</label>
                                 <div className="input px-[10px] py-3 w-full lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px]">
@@ -239,38 +230,9 @@ const CTAForm = () => {
                             </div>
                         </div>
                         <div className={`${step !== 2 ? 'hidden md:flex' : 'flex'} "property-info flex lg:grid lg:grid-cols-3 justify-center items-center flex-col md:flex-row flex-wrap gap-2 lg:gap-6"`}>
-                            <div className="property-location flex flex-col justify-center items-start gap-2 w-full">
-                                <label htmlFor="property-location" className="text-xs text-accent-purple">Property Location*</label>
-                                <div className="input px-[10px] py-3 lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] gap-2 w-full">
-                                    <Image src="/location.svg" alt="location" width={12} height={12} />
-                                    <input type="text" {...register("additional_fields.0.location", { required: true })} id="property-location" placeholder="Enter your property location" className="bg-transparent outline-none border-none w-full" />
-                                </div>
-                            </div>
-                            <div className="property-type flex flex-col justify-center items-start gap-2 w-full">
-                                <label htmlFor="property-type" className="text-xs text-accent-purple">Property Type*</label>
-                                <div className="input px-[10px] py-3 lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] w-full">
-                                    <select {...register("additional_fields.0.property_type", { required: true })} id="property-type" className="bg-transparent outline-none border-none w-full">
-                                        <option value="Apartment">Apartment</option>
-                                        <option value="Villa">Villa</option>
-                                        <option value="Penthouse">Penthouse</option>
-                                        <option value="Townhouse">Townhouse</option>
-                                        <option value="Mansion">Mansion</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="Bedrooms* flex flex-col justify-center items-start gap-2 w-full">
-                                <label htmlFor="bedrooms" className="text-xs text-accent-purple">Bedrooms*</label>
-                                <div className="input px-[10px] py-3 lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] w-full">
-                                    <select {...register("additional_fields.0.bedrooms", { required: true })} id="bedrooms" className="bg-transparent outline-none border-none w-full">
-                                        <option value="studio">studio</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="more than 4">more than 4</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <InputField label="Location" inputType="location" placeholder="Enter your location" register={register} error={errors.additional_fields?.[0]?.location} name="additional_fields.0.location" required={true} />
+                            <InputField label="Property Type" placeholder='Select property type' inputType="select_property_type" register={register} error={errors.additional_fields?.[0]?.property_type} name="additional_fields.0.property_type" required={true} />
+                            <InputField label="Bedrooms" placeholder='Select number of bedrooms' inputType="select_bedroom_type" register={register} error={errors.additional_fields?.[0]?.bedrooms} name="additional_fields.0.bedrooms" required={true} />
                         </div>
                         <div className="cta flex justify-center items-center flex-col md:flex-row gap-2 lg:gap-6">
                             <div className="flex flex-col md:flex-row justify-start items-center w-full gap-6">
