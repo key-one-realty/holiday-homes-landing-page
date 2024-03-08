@@ -83,26 +83,46 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer-bottom flex gap-7 justify-between xl:justify-around items-center w-full py-5 text-gray-50">
+        <div className="footer-bottom flex flex-col sm:flex-row gap-7 justify-between xl:justify-around items-center w-full py-5 text-gray-50">
           <div className="footer-bottom-left flex justify-center items-center gap-5">
             <div>
-              <Image src="/twitter.svg" alt="twitter" width={20} height={20} />
+              <a
+                href="https://www.instagram.com/keyoneholidayhomes/"
+                target="_blank"
+              >
+                <Image
+                  src="/instagram.png"
+                  alt="instagram"
+                  width={16}
+                  height={16}
+                />
+              </a>
             </div>
             <div>
-              <Image
-                src="/linkedin.svg"
-                alt="linkedin"
-                width={20}
-                height={20}
-              />
+              <a
+                href="https://www.linkedin.com/company/keyoneholidayhomes/"
+                target="_blank"
+              >
+                <Image
+                  src="/linkedin.svg"
+                  alt="linkedin"
+                  width={20}
+                  height={20}
+                />
+              </a>
             </div>
             <div>
-              <Image
-                src="/facebook.svg"
-                alt="facebook"
-                width={20}
-                height={20}
-              />
+              <a
+                href="https://www.facebook.com/keyoneholidayhomes/"
+                target="_blank"
+              >
+                <Image
+                  src="/facebook.svg"
+                  alt="facebook"
+                  width={20}
+                  height={20}
+                />
+              </a>
             </div>
           </div>
           <div className="footer-bottom-right flex justify-center items-center gap-10">
