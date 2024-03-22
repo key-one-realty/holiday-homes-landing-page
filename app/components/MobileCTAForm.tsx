@@ -25,6 +25,7 @@ const MobileCTAForm: FC<MobileCTAFormProps> = ({ CTAForm2Ref }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<String>("");
   const [apiSuccess, setApiSuccess] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     if (window.location.search) {
@@ -133,6 +134,11 @@ const MobileCTAForm: FC<MobileCTAFormProps> = ({ CTAForm2Ref }) => {
         apiData.property_type_id = 1;
       }
 
+      if (disableButton) {
+        console.log("Button is disabled");
+        return;
+      }
+      setDisableButton(true);
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
         method: "POST",
         headers: {
@@ -330,7 +336,12 @@ const MobileCTAForm: FC<MobileCTAFormProps> = ({ CTAForm2Ref }) => {
                 ) : (
                   <button
                     onClick={handleSubmit(handleSubmitForm)}
-                    className="p-3 flex justify-center items-center rounded-lg font-bold bg-accent-purple w-[104px]"
+                    className={`p-3 flex justify-center items-center rounded-lg font-bold ${
+                      disableButton
+                        ? "bg-neutral-400 cursor-not-allowed"
+                        : "bg-accent-purple cursor-pointer"
+                    }  w-[104px]`}
+                    disabled={disableButton}
                   >
                     Submit
                     {isLoading && (

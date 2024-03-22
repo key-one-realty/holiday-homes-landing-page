@@ -26,7 +26,7 @@ const InputField: FC<InputFieldProps> = ({
       );
     } else if (inputType === "select_property_type") {
       return (
-        <div className="input px-[10px] py-3 xl:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] w-full">
+        <div className="input px-[10px] py-3 xl:w-full bg-input-bg flex justify-start items-center rounded-[10px] w-full">
           <select
             {...register(name, { required: required })}
             id={label}
@@ -42,7 +42,7 @@ const InputField: FC<InputFieldProps> = ({
       );
     } else if (inputType === "select_bedroom_type") {
       return (
-        <div className="input px-[10px] py-3 xl:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] w-full">
+        <div className="input px-[10px] py-3 xl:w-full bg-input-bg flex justify-start items-center rounded-[10px] w-full">
           <select
             {...register(name, { required: required })}
             id={label}
@@ -59,7 +59,7 @@ const InputField: FC<InputFieldProps> = ({
       );
     } else if (inputType === "location") {
       return (
-        <div className="input px-[10px] py-3 xl:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] gap-2 w-full">
+        <div className="input px-[10px] py-3 xl:w-full bg-input-bg flex justify-start items-center rounded-[10px] gap-2 w-full">
           <Image src="/location.svg" alt="location" width={12} height={12} />
           <input
             type="text"
@@ -72,7 +72,7 @@ const InputField: FC<InputFieldProps> = ({
       );
     } else {
       return (
-        <div className="input px-[10px] py-3 xl:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px] gap-2 w-full">
+        <div className="input px-[10px] py-3 xl:w-full bg-input-bg flex justify-start items-center rounded-[10px] gap-2 w-full">
           <input
             {...register(name, { required: required })}
             id={label}

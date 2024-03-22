@@ -20,6 +20,7 @@ const CTAForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<String>("");
   const [apiSuccess, setApiSuccess] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -144,6 +145,12 @@ const CTAForm = () => {
         apiData.property_type_id = 37;
       }
 
+      if (disableButton) {
+        console.log("Button is disabled");
+        return;
+      }
+      setDisableButton(true);
+      console.log("Making API call");
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
         method: "POST",
         headers: {
@@ -156,6 +163,7 @@ const CTAForm = () => {
       setIsLoading(false);
       setApiSuccess(true);
     } catch (error: any) {
+      setDisableButton(false);
       setIsLoading(false);
       setApiError(error.message);
     }
@@ -239,7 +247,7 @@ const CTAForm = () => {
                 <label htmlFor="phone" className="text-xs text-accent-purple">
                   Phone*
                 </label>
-                <div className="input px-[10px] py-3 w-full lg:w-[24.405vw] bg-input-bg flex justify-start items-center rounded-[10px]">
+                <div className="input px-[10px] py-3 w-full lg:w-full bg-input-bg flex justify-start items-center rounded-[10px]">
                   <PhoneInput
                     enableSearch={true}
                     inputStyle={{
@@ -272,7 +280,7 @@ const CTAForm = () => {
             <div
               className={`${
                 step !== 2 ? "hidden md:flex" : "flex"
-              } "property-info flex lg:grid lg:grid-cols-3 justify-center items-center flex-col md:flex-row flex-wrap gap-2 lg:gap-6"`}
+              } "property-info flex lg:grid lg:grid-cols-3 justify-center items-center flex-col md:flex-row flex-wrap gap-2 lg:gap-6 "`}
             >
               <InputField
                 label="Location"
@@ -328,8 +336,13 @@ const CTAForm = () => {
                 </div>
                 {step == 3 ? (
                   <button
-                    className="bg-accent-purple w-full md:w-4/12 lg:w-[24.405vw] flex justify-center items-center text-white py-3 px-5 rounded-lg mt-4"
+                    className={`${
+                      disableButton
+                        ? "bg-neutral-400 cursor-not-allowed"
+                        : "bg-accent-purple cursor-pointer"
+                    }  w-full md:w-4/12 lg:w-[24.405vw] flex justify-center items-center text-white py-3 px-5 rounded-lg mt-4`}
                     onClick={handleSubmit(handleSubmitForm)}
+                    disabled={disableButton}
                   >
                     SUBMIT{" "}
                     {isLoading && (
