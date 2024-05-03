@@ -22,6 +22,11 @@ export default function RootLayout({
         id="respondio__growth_tool"
         src="https://cdn.respond.io/widget/widget.js?wId=6ab1a4a3-ebe1-4686-9ff0-b4629ce7acd8"
       />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-HY48FQ3B2N"></Script>
+
+      <Script>
+        {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'G-HY48FQ3B2N');`}
+      </Script>
       {/* <!-- https://respond.io --> */}
     </html>
   );
